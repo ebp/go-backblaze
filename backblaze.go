@@ -163,7 +163,13 @@ func (c *B2) authRequest(method, apiPath string, body io.Reader) (*http.Request,
 		}
 	}
 
-	path := c.auth.APIEndpoint + v1 + apiPath
+	var host string
+	if isDownloadApiPath(apiPath) {
+		host = c.auth.DownloadURL
+	} else {
+		host = c.auth.APIEndpoint
+	}
+	path := host + v1 + apiPath
 
 	req, err := http.NewRequest(method, path, body)
 	if err != nil {
@@ -290,4 +296,13 @@ func (c *B2) tryAPIRequest(apiPath string, body []byte, response interface{}) er
 	}
 
 	return c.parseResponse(resp, response, auth)
+}
+
+func isDownloadApiPath(path string) bool {
+	if len(path) >= 22 && path[:22] == "b2_download_file_by_id" {
+		return true
+	} else if len(path) >= 24 && path[:24] == "b2_download_file_by_id" {
+		return true
+	}
+	return false
 }
