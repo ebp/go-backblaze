@@ -150,7 +150,7 @@ func (c *B2) DownloadURL() (string, error) {
 }
 
 // Create an authorized request using the client's credentials
-func (c *B2) authRequest(method, apiPath string, body io.Reader) (*http.Request, *authorizationState, error) {
+func (c *B2) AuthRequest(method, apiPath string, body io.Reader) (*http.Request, *authorizationState, error) {
 	c.mutex.Lock()
 	defer c.mutex.Unlock()
 
@@ -179,7 +179,7 @@ func (c *B2) authRequest(method, apiPath string, body io.Reader) (*http.Request,
 	req.Header.Add("Authorization", c.auth.AuthorizationToken)
 
 	if c.Debug {
-		log.Printf("authRequest: %s %s\n", method, req.URL)
+		log.Printf("AuthRequest: %s %s\n", method, req.URL)
 	}
 
 	return req, c.auth, nil
@@ -187,7 +187,7 @@ func (c *B2) authRequest(method, apiPath string, body io.Reader) (*http.Request,
 
 // Dispatch an authorized API GET request
 func (c *B2) authGet(apiPath string) (*http.Response, *authorizationState, error) {
-	req, auth, err := c.authRequest("GET", apiPath, nil)
+	req, auth, err := c.AuthRequest("GET", apiPath, nil)
 	if err != nil {
 		return nil, nil, err
 	}
@@ -198,7 +198,7 @@ func (c *B2) authGet(apiPath string) (*http.Response, *authorizationState, error
 
 // Dispatch an authorized POST request
 func (c *B2) authPost(apiPath string, body io.Reader) (*http.Response, *authorizationState, error) {
-	req, auth, err := c.authRequest("POST", apiPath, body)
+	req, auth, err := c.AuthRequest("POST", apiPath, body)
 	if err != nil {
 		return nil, nil, err
 	}
