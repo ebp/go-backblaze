@@ -118,6 +118,7 @@ type File struct {
 
 type listFilesRequest struct {
 	BucketID      string `json:"bucketId"`
+	Prefix        string `json:"prefix"`
 	StartFileName string `json:"startFileName"`
 	MaxFileCount  int    `json:"maxFileCount"`
 }

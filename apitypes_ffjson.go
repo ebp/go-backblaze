@@ -5090,6 +5090,8 @@ func (mj *listFilesRequest) MarshalJSONBuf(buf fflib.EncodingBuffer) error {
 	_ = err
 	buf.WriteString(`{"bucketId":`)
 	fflib.WriteJsonString(buf, string(mj.BucketID))
+	buf.WriteString(`,"prefix":`)
+	fflib.WriteJsonString(buf, string(mj.Prefix))
 	buf.WriteString(`,"startFileName":`)
 	fflib.WriteJsonString(buf, string(mj.StartFileName))
 	buf.WriteString(`,"maxFileCount":`)
@@ -5104,12 +5106,16 @@ const (
 
 	ffj_t_listFilesRequest_BucketID
 
+	ffj_t_listFilesRequest_Prefix
+
 	ffj_t_listFilesRequest_StartFileName
 
 	ffj_t_listFilesRequest_MaxFileCount
 )
 
 var ffj_key_listFilesRequest_BucketID = []byte("bucketId")
+
+var ffj_key_listFilesRequest_Prefix = []byte("prefix")
 
 var ffj_key_listFilesRequest_StartFileName = []byte("startFileName")
 
@@ -5190,6 +5196,14 @@ mainparse:
 						goto mainparse
 					}
 
+				case 'p':
+
+					if bytes.Equal(ffj_key_listFilesRequest_Prefix, kn) {
+						currentKey = ffj_t_listFilesRequest_Prefix
+						state = fflib.FFParse_want_colon
+						goto mainparse
+					}
+
 				case 's':
 
 					if bytes.Equal(ffj_key_listFilesRequest_StartFileName, kn) {
@@ -5208,6 +5222,12 @@ mainparse:
 
 				if fflib.EqualFoldRight(ffj_key_listFilesRequest_StartFileName, kn) {
 					currentKey = ffj_t_listFilesRequest_StartFileName
+					state = fflib.FFParse_want_colon
+					goto mainparse
+				}
+
+				if fflib.SimpleLetterEqualFold(ffj_key_listFilesRequest_Prefix, kn) {
+					currentKey = ffj_t_listFilesRequest_Prefix
 					state = fflib.FFParse_want_colon
 					goto mainparse
 				}
@@ -5237,6 +5257,9 @@ mainparse:
 
 				case ffj_t_listFilesRequest_BucketID:
 					goto handle_BucketID
+
+				case ffj_t_listFilesRequest_Prefix:
+					goto handle_Prefix
 
 				case ffj_t_listFilesRequest_StartFileName:
 					goto handle_StartFileName
@@ -5277,6 +5300,32 @@ handle_BucketID:
 			outBuf := fs.Output.Bytes()
 
 			uj.BucketID = string(string(outBuf))
+
+		}
+	}
+
+	state = fflib.FFParse_after_value
+	goto mainparse
+
+handle_Prefix:
+
+	/* handler: uj.Prefix type=string kind=string quoted=false*/
+
+	{
+
+		{
+			if tok != fflib.FFTok_string && tok != fflib.FFTok_null {
+				return fs.WrapErr(fmt.Errorf("cannot unmarshal %s into Go value for string", tok))
+			}
+		}
+
+		if tok == fflib.FFTok_null {
+
+		} else {
+
+			outBuf := fs.Output.Bytes()
+
+			uj.Prefix = string(string(outBuf))
 
 		}
 	}

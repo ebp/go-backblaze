@@ -47,7 +47,7 @@ func (o *List) Execute(args []string) error {
 			}
 		}
 	} else {
-		response, err := bucket.ListFileNames("", 100)
+		response, err := bucket.ListFileNames("", "", 100)
 		if err != nil {
 			return err
 		}
