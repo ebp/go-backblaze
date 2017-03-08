@@ -298,6 +298,7 @@ tokerror:
 	}
 	panic("ffjson-generated: unreachable, please report bug.")
 done:
+
 	return nil
 }
 
@@ -627,6 +628,7 @@ tokerror:
 	}
 	panic("ffjson-generated: unreachable, please report bug.")
 done:
+
 	return nil
 }
 
@@ -1145,7 +1147,7 @@ handle_FileInfo:
 
 				var k string
 
-				var v string
+				var tmp_uj__FileInfo string
 
 				tok = fs.Scan()
 				if tok == fflib.FFTok_error {
@@ -1194,7 +1196,7 @@ handle_FileInfo:
 				}
 
 				tok = fs.Scan()
-				/* handler: v type=string kind=string quoted=false*/
+				/* handler: tmp_uj__FileInfo type=string kind=string quoted=false*/
 
 				{
 
@@ -1210,12 +1212,12 @@ handle_FileInfo:
 
 						outBuf := fs.Output.Bytes()
 
-						v = string(string(outBuf))
+						tmp_uj__FileInfo = string(string(outBuf))
 
 					}
 				}
 
-				uj.FileInfo[k] = v
+				uj.FileInfo[k] = tmp_uj__FileInfo
 
 				wantVal = false
 			}
@@ -1240,6 +1242,7 @@ tokerror:
 	}
 	panic("ffjson-generated: unreachable, please report bug.")
 done:
+
 	return nil
 }
 
@@ -1629,6 +1632,7 @@ tokerror:
 	}
 	panic("ffjson-generated: unreachable, please report bug.")
 done:
+
 	return nil
 }
 
@@ -1855,13 +1859,13 @@ handle_Files:
 			uj.Files = nil
 		} else {
 
-			uj.Files = make([]FileStatus, 0)
+			uj.Files = []FileStatus{}
 
 			wantVal := true
 
 			for {
 
-				var v FileStatus
+				var tmp_uj__Files FileStatus
 
 				tok = fs.Scan()
 				if tok == fflib.FFTok_error {
@@ -1882,7 +1886,7 @@ handle_Files:
 					wantVal = true
 				}
 
-				/* handler: v type=backblaze.FileStatus kind=struct quoted=false*/
+				/* handler: tmp_uj__Files type=backblaze.FileStatus kind=struct quoted=false*/
 
 				{
 					if tok == fflib.FFTok_null {
@@ -1891,14 +1895,15 @@ handle_Files:
 						goto mainparse
 					}
 
-					err = v.UnmarshalJSONFFLexer(fs, fflib.FFParse_want_key)
+					err = tmp_uj__Files.UnmarshalJSONFFLexer(fs, fflib.FFParse_want_key)
 					if err != nil {
 						return err
 					}
 					state = fflib.FFParse_after_value
 				}
 
-				uj.Files = append(uj.Files, v)
+				uj.Files = append(uj.Files, tmp_uj__Files)
+
 				wantVal = false
 			}
 		}
@@ -1973,6 +1978,7 @@ tokerror:
 	}
 	panic("ffjson-generated: unreachable, please report bug.")
 done:
+
 	return nil
 }
 
@@ -2179,13 +2185,13 @@ handle_Files:
 			uj.Files = nil
 		} else {
 
-			uj.Files = make([]FileStatus, 0)
+			uj.Files = []FileStatus{}
 
 			wantVal := true
 
 			for {
 
-				var v FileStatus
+				var tmp_uj__Files FileStatus
 
 				tok = fs.Scan()
 				if tok == fflib.FFTok_error {
@@ -2206,7 +2212,7 @@ handle_Files:
 					wantVal = true
 				}
 
-				/* handler: v type=backblaze.FileStatus kind=struct quoted=false*/
+				/* handler: tmp_uj__Files type=backblaze.FileStatus kind=struct quoted=false*/
 
 				{
 					if tok == fflib.FFTok_null {
@@ -2215,14 +2221,15 @@ handle_Files:
 						goto mainparse
 					}
 
-					err = v.UnmarshalJSONFFLexer(fs, fflib.FFParse_want_key)
+					err = tmp_uj__Files.UnmarshalJSONFFLexer(fs, fflib.FFParse_want_key)
 					if err != nil {
 						return err
 					}
 					state = fflib.FFParse_after_value
 				}
 
-				uj.Files = append(uj.Files, v)
+				uj.Files = append(uj.Files, tmp_uj__Files)
+
 				wantVal = false
 			}
 		}
@@ -2271,6 +2278,7 @@ tokerror:
 	}
 	panic("ffjson-generated: unreachable, please report bug.")
 done:
+
 	return nil
 }
 
@@ -2459,6 +2467,7 @@ tokerror:
 	}
 	panic("ffjson-generated: unreachable, please report bug.")
 done:
+
 	return nil
 }
 
@@ -2788,6 +2797,7 @@ tokerror:
 	}
 	panic("ffjson-generated: unreachable, please report bug.")
 done:
+
 	return nil
 }
 
@@ -2976,6 +2986,7 @@ tokerror:
 	}
 	panic("ffjson-generated: unreachable, please report bug.")
 done:
+
 	return nil
 }
 
@@ -3259,6 +3270,7 @@ tokerror:
 	}
 	panic("ffjson-generated: unreachable, please report bug.")
 done:
+
 	return nil
 }
 
@@ -3496,6 +3508,7 @@ tokerror:
 	}
 	panic("ffjson-generated: unreachable, please report bug.")
 done:
+
 	return nil
 }
 
@@ -3684,6 +3697,7 @@ tokerror:
 	}
 	panic("ffjson-generated: unreachable, please report bug.")
 done:
+
 	return nil
 }
 
@@ -3918,6 +3932,7 @@ tokerror:
 	}
 	panic("ffjson-generated: unreachable, please report bug.")
 done:
+
 	return nil
 }
 
@@ -4204,6 +4219,7 @@ tokerror:
 	}
 	panic("ffjson-generated: unreachable, please report bug.")
 done:
+
 	return nil
 }
 
@@ -4441,6 +4457,7 @@ tokerror:
 	}
 	panic("ffjson-generated: unreachable, please report bug.")
 done:
+
 	return nil
 }
 
@@ -4629,13 +4646,13 @@ handle_Buckets:
 			uj.Buckets = nil
 		} else {
 
-			uj.Buckets = make([]*BucketInfo, 0)
+			uj.Buckets = []*BucketInfo{}
 
 			wantVal := true
 
 			for {
 
-				var v *BucketInfo
+				var tmp_uj__Buckets *BucketInfo
 
 				tok = fs.Scan()
 				if tok == fflib.FFTok_error {
@@ -4656,29 +4673,30 @@ handle_Buckets:
 					wantVal = true
 				}
 
-				/* handler: v type=*backblaze.BucketInfo kind=ptr quoted=false*/
+				/* handler: tmp_uj__Buckets type=*backblaze.BucketInfo kind=ptr quoted=false*/
 
 				{
 					if tok == fflib.FFTok_null {
 
-						v = nil
+						tmp_uj__Buckets = nil
 
 						state = fflib.FFParse_after_value
 						goto mainparse
 					}
 
-					if v == nil {
-						v = new(BucketInfo)
+					if tmp_uj__Buckets == nil {
+						tmp_uj__Buckets = new(BucketInfo)
 					}
 
-					err = v.UnmarshalJSONFFLexer(fs, fflib.FFParse_want_key)
+					err = tmp_uj__Buckets.UnmarshalJSONFFLexer(fs, fflib.FFParse_want_key)
 					if err != nil {
 						return err
 					}
 					state = fflib.FFParse_after_value
 				}
 
-				uj.Buckets = append(uj.Buckets, v)
+				uj.Buckets = append(uj.Buckets, tmp_uj__Buckets)
+
 				wantVal = false
 			}
 		}
@@ -4701,6 +4719,7 @@ tokerror:
 	}
 	panic("ffjson-generated: unreachable, please report bug.")
 done:
+
 	return nil
 }
 
@@ -5044,6 +5063,7 @@ tokerror:
 	}
 	panic("ffjson-generated: unreachable, please report bug.")
 done:
+
 	return nil
 }
 
@@ -5334,6 +5354,7 @@ tokerror:
 	}
 	panic("ffjson-generated: unreachable, please report bug.")
 done:
+
 	return nil
 }
 
@@ -5568,5 +5589,6 @@ tokerror:
 	}
 	panic("ffjson-generated: unreachable, please report bug.")
 done:
+
 	return nil
 }
