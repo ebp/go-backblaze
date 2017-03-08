@@ -1,5 +1,5 @@
 // Package backblaze B2 API for Golang
-package backblaze // import "gopkg.in/kothar/go-backblaze.v0"
+package backblaze // import "github.com/ebp/go-backblaze"
 
 import (
 	"bytes"
